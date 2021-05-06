@@ -19,8 +19,11 @@ import java.util.concurrent.TimeUnit
  */
 interface RestApis {
 
-    @GET("country=IN&apiKey=${AppConstants.NEWS_API_KEY}")
-    suspend fun getNewsList(): Response<NewsApiResponse>
+    @GET("top-headlines")
+    suspend fun getNewsList(
+        @Query("country") country: String,
+        @Query("apiKey") apiKey: String
+    ): Response<NewsApiResponse>
 
     companion object {
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): RestApis {

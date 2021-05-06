@@ -16,7 +16,7 @@ open class Event(vararg content1: Any) {
  *
  * [onEventUnhandledContent] is *only* called if the [Event]'s contents has not been handled.
  */
-class EventObserverNew(private val onEventUnhandledContent: (Any?) -> Unit) :
+class EventObserver(private val onEventUnhandledContent: (Any?) -> Unit) :
     Observer<Event> {
     override fun onChanged(event: Event) {
         if (!event.hasBeenHandled) {

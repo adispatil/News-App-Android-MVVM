@@ -10,5 +10,6 @@
     <color name="darkBackground">#FF262833</color>
     <color name="primaryText">#FFFFFF</color>
     <color name="secondaryText">#B3FFFFFF</color>
+    <color name="red">#FF0000</color>
 
 </resources>
