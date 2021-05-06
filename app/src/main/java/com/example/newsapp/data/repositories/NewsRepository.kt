@@ -1,8 +1,6 @@
 package com.example.newsapp.data.repositories
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.newsapp.data.AppDatabase
 import com.example.newsapp.data.entities.NewsEntity
 import com.example.newsapp.data.network.RestApis
@@ -14,8 +12,6 @@ import com.example.newsapp.utils.AppConstants
 import com.example.newsapp.utils.Coroutines
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
@@ -69,7 +65,7 @@ class NewsRepository(
 
     suspend fun getLocalNewsList(): ArrayList<Article> {
         return withContext(Dispatchers.IO) {
-            var tempList = ArrayList<Article>()
+            val tempList = ArrayList<Article>()
             val localList = db.getNewsDao().getLocalNewsList()
             for (article in localList) {
                 tempList.add(

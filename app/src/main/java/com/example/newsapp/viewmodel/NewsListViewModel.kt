@@ -1,10 +1,5 @@
 package com.example.newsapp.viewmodel
 
-import android.graphics.drawable.Drawable
-import android.widget.ImageView
-import androidx.annotation.IdRes
-import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +9,6 @@ import com.example.newsapp.data.network.response.Article
 import com.example.newsapp.data.repositories.NewsRepository
 import com.example.newsapp.utils.*
 import com.google.gson.Gson
-import com.squareup.picasso.Picasso
 
 
 /**

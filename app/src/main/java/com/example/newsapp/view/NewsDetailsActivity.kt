@@ -29,7 +29,7 @@ class NewsDetailsActivity : AppCompatActivity(), KodeinAware,
 
     override val kodein by kodein()
 
-    private val factory: NewsListViewModelFactory by instance<NewsListViewModelFactory>()
+    private val factory: NewsListViewModelFactory by instance()
     private lateinit var mViewModel: NewsListViewModel
     private lateinit var mBinding: ActivityNewsDetailsBinding
 
@@ -82,9 +82,5 @@ class NewsDetailsActivity : AppCompatActivity(), KodeinAware,
         if (!isConnected) {
             mBinding.parentLayout.snackbar("Sorry! Not connected to internet")
         }
-    }
-
-    companion object {
-        private val TAG = NewsDetailsActivity::class.java.simpleName
     }
 }

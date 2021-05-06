@@ -13,11 +13,11 @@ import com.example.newsapp.viewmodel.NewsListViewModel
 
 class NewsListAdapter(
     private var mList: ArrayList<Article>,
-    val mViewModel: NewsListViewModel
+    private val mViewModel: NewsListViewModel
 ) : RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var binding: NewsBinding? = null
+        private var binding: NewsBinding? = null
 
         init {
             bind()

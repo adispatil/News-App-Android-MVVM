@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:background="@color/darkBackground"
         tools:context=".view.NewsDetailsActivity">
-
+        
         <ImageView
             android:id="@+id/img_news"
             android:layout_width="match_parent"

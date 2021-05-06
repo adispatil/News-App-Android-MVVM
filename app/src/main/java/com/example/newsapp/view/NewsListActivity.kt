@@ -31,7 +31,7 @@ class NewsListActivity : AppCompatActivity(), KodeinAware,
 
     override val kodein by kodein()
 
-    private val factory: NewsListViewModelFactory by instance<NewsListViewModelFactory>()
+    private val factory: NewsListViewModelFactory by instance()
     private lateinit var mViewModel: NewsListViewModel
     private var layoutManager: LinearLayoutManager? = null
     private lateinit var mBinding: ActivityNewsListBinding
@@ -67,9 +67,7 @@ class NewsListActivity : AppCompatActivity(), KodeinAware,
     private fun navigateToNewsDetailsActivity(article: Article) {
         val json = Gson().toJson(article)
 
-        startActivity(Intent(this@NewsListActivity, NewsDetailsActivity::class.java).let {
-            it.putExtra(AppConstants.BUNDLE_NEWS_ARTICLE, json)
-        })
+        startActivity(Intent(this@NewsListActivity, NewsDetailsActivity::class.java).putExtra(AppConstants.BUNDLE_NEWS_ARTICLE, json))
     }
 
     private fun showApiErrorMessage(message: String) {
@@ -93,10 +91,6 @@ class NewsListActivity : AppCompatActivity(), KodeinAware,
     override fun onResume() {
         super.onResume()
         NewsApplication().getInstance()?.setConnectivityListener(this@NewsListActivity)
-    }
-
-    companion object {
-        private val TAG = NewsListActivity::class.java.simpleName
     }
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {

@@ -16,7 +16,7 @@ import okhttp3.Response
  * 9021-93-9021
  */
 class NetworkConnectionInterceptor(
-    private val context: Context,
+    context: Context,
 ) : Interceptor {
 
     private val applicationContext: Context = context.applicationContext
@@ -86,6 +86,6 @@ class NetworkConnectionInterceptor(
     }
 
     companion object {
-        val TAG = NetworkConnectionInterceptor::class.java.simpleName
+        val TAG: String = NetworkConnectionInterceptor::class.java.simpleName
     }
 }

@@ -1,21 +1,18 @@
 package com.example.newsapp.viewmodel
 
 import android.text.format.DateUtils
-import android.widget.ImageView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.databinding.BindingAdapter
 import com.example.newsapp.data.network.response.Article
 import com.example.newsapp.utils.AppConstants
-import com.squareup.picasso.Picasso
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class NewsAdapterItemModel(
-    val mViewModel: NewsListViewModel,
-    val articleItem: Article
+    private val mViewModel: NewsListViewModel,
+    private val articleItem: Article
 ) : BaseObservable() {
     @Bindable
     var title: String = ""
