@@ -42,6 +42,7 @@ class NewsListActivity : AppCompatActivity(), KodeinAware,
         mViewModel = ViewModelProvider(this, factory).get(NewsListViewModel::class.java)
         mBinding.viewModel = mViewModel
 
+        mBinding.progressBar.show()
         initRecyclerView()
         initListener()
         mViewModel.getNewsListData()
@@ -54,8 +55,10 @@ class NewsListActivity : AppCompatActivity(), KodeinAware,
             EventObserver {
                 val content = it as Array<*>
                 when (content[0] as String) {
-                    EventConstants.REST_API_EXCEPTION -> showApiErrorMessage(content[1] as String)
+                    EventConstants.REST_API_EXCEPTION,
+                    EventConstants.NO_INTERNET_CONNECTION_EVENT -> showApiErrorMessage(content[1] as String)
                     EventConstants.NEWS_ITEM_CLICK_EVENT -> navigateToNewsDetailsActivity(content[1] as Article)
+                    EventConstants.HIDE_PROGRESS_BAR -> mBinding.progressBar.hide()
                 }
             }
         )
@@ -71,6 +74,7 @@ class NewsListActivity : AppCompatActivity(), KodeinAware,
 
     private fun showApiErrorMessage(message: String) {
         mBinding.parentLayout.snackbarError(message)
+        mBinding.progressBar.hide()
     }
 
     private fun initRecyclerView() {

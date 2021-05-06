@@ -11,6 +11,6 @@ class AppConstants {
         const val NEWS_API_KEY = "fa6433f08a744ae0b91a4f31939ac294"
         const val API_BASE_URL = "https://newsapi.org/v2/"
         const val BUNDLE_NEWS_ARTICLE = "BUNDLE_NEWS_ARTICLE"
-        const val DUMMY_IMAGE_NOT_FOUND = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Comic_image_missing.svg/1264px-Comic_image_missing.svg.png"
+        const val DUMMY_IMAGE_NOT_FOUND = "https://www.dia.org/sites/default/files/No_Img_Avail.jpg"
     }
 }

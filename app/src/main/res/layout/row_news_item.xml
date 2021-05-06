@@ -28,7 +28,14 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:load_image="@{itemModel.imageUrl}"/>
+            android:src="@drawable/progress_loader"
+            app:load_image="@{itemModel.imageUrl}" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

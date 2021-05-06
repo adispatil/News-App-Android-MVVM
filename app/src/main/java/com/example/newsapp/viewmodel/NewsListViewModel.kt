@@ -36,20 +36,39 @@ class NewsListViewModel(
         )
     )
 
+
+
     fun getNewsListData() {
+        getLocalData()
         Coroutines.main {
             try {
                 val newsListResponse = repository.getNewsList()
                 newsListResponse?.articles?.let {
+                    mModel.newsList.clear()
                     for (articleList in it) {
                         mModel.newsList.add(articleList)
                     }
                     mNewsAdapter.value?.updateList(mModel.newsList)
+                    _event.value = Event(EventConstants.HIDE_PROGRESS_BAR)
+                    repository.saveNewsListToLocalDb(mModel.newsList)
                 }
             } catch (ex: RestApiExceptions) {
                 _event.value = Event(EventConstants.REST_API_EXCEPTION, ex.message.toString())
+            } catch (ex: NoInternetException) {
+                _event.value = Event(EventConstants.NO_INTERNET_CONNECTION_EVENT, ex.message.toString() + if (mModel.newsList.isNullOrEmpty()){""} else {"\n You can still read the news from local data!"})
             } catch (ex: Exception) {
                 _event.value = Event(EventConstants.REST_API_EXCEPTION, ex.message.toString())
+            }
+        }
+    }
+
+    private fun getLocalData() {
+        Coroutines.main {
+            val newsList = repository.getLocalNewsList()
+            if (!newsList.isNullOrEmpty()) {
+                mModel.newsList = newsList
+                mNewsAdapter.value?.updateList(mModel.newsList)
+                _event.value = Event(EventConstants.HIDE_PROGRESS_BAR)
             }
         }
     }

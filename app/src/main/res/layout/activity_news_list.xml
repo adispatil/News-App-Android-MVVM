@@ -49,5 +49,15 @@
             tools:listitem="@layout/row_news_item"
             app:setAdapter="@{viewModel.mNewsAdapter}"/>
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:visibility="invisible"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:progressTint="@color/white"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

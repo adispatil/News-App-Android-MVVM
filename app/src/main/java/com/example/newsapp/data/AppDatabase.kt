@@ -18,7 +18,7 @@ import com.example.newsapp.utils.AppConstants
     entities = [
         NewsEntity::class
     ],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -40,7 +40,10 @@ abstract class AppDatabase : RoomDatabase() {
                 context.applicationContext,
                 AppDatabase::class.java,
                 AppConstants.APP_DATABASE_NAME
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
+
 
     }
 }

@@ -18,7 +18,7 @@ object SetDetailNewsImage {
                 .into(view)
         } else {
             Picasso.get()
-                .load(R.drawable.progress_loader)
+                .load(AppConstants.DUMMY_IMAGE_NOT_FOUND)
                 .fit()
                 .centerCrop()
                 .placeholder(R.drawable.progress_loader)
