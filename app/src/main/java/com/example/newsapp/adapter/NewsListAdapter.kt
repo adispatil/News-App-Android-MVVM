@@ -55,6 +55,7 @@ class NewsListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         NewsAdapterItemModel(
+            mViewModel,
             mList[position]
         ).let {
             holder.setViewModel(it)

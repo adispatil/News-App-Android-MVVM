@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp">
         <activity
+            android:name=".view.NewsDetailsActivity"
+            android:theme="@style/Theme.NewsApp.NoActionBar" />
+        <activity
             android:name=".view.NewsListActivity"
             android:theme="@style/Theme.NewsApp.NoActionBar" />
         <activity

@@ -6,6 +6,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
 import com.example.newsapp.data.network.response.Article
+import com.example.newsapp.utils.AppConstants
 import com.squareup.picasso.Picasso
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -13,7 +14,8 @@ import java.util.*
 
 
 class NewsAdapterItemModel(
-    articleItem: Article
+    val mViewModel: NewsListViewModel,
+    val articleItem: Article
 ) : BaseObservable() {
     @Bindable
     var title: String = ""
@@ -28,14 +30,13 @@ class NewsAdapterItemModel(
     var newsTimeAgo: String = ""
 
     @Bindable
-    var imageUrl: String =
-        "https://www.thehindu.com/news/national/tamil-nadu/mjk6m3/article34487185.ece/ALTERNATES/LANDSCAPE_615/05MAYTH--Stalin"
+    var imageUrl: String = ""
 
     init {
         title = articleItem.title ?: ""
-        description = articleItem.description ?: ""
+        description = articleItem.description ?: articleItem.content ?: ""
         sourceName = articleItem.source?.name ?: ""
-        imageUrl = articleItem.urlToImage ?: ""
+        imageUrl = articleItem.urlToImage ?: AppConstants.DUMMY_IMAGE_NOT_FOUND
         if (!articleItem.publishedAt.isNullOrEmpty()) {
             newsTimeAgo = getTimeAgo(articleItem.publishedAt)
         }
@@ -55,15 +56,7 @@ class NewsAdapterItemModel(
         }
     }
 
-    companion object {
-        @BindingAdapter("android:loadImage")
-        fun loadImage(image: ImageView, imageUrl: String) {
-            Picasso.get()
-                .load(imageUrl)
-                .fit()
-                .centerCrop()
-                .noPlaceholder()
-                .into(image)
-        }
+    fun onNewsItemClicked() {
+        mViewModel.onNewsItemClicked(articleItem)
     }
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.newsapp.R" />
+        <variable
+            name="viewModel"
+            type="com.example.newsapp.viewmodel.NewsListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkBackground"
+        tools:context=".view.NewsDetailsActivity">
+
+        <ImageView
+            android:id="@+id/img_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:minHeight="200dp"
+            app:load_image="@{viewModel.mModel.article.urlToImage != null ? viewModel.mModel.article.urlToImage : viewModel.mModel.imageNotFount}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_bg"
+            app:layout_constraintBottom_toBottomOf="@id/img_news"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_news" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="5dp"
+            android:background="@drawable/circular_bordershape"
+            android:onClick="@{() -> viewModel.onBackClick()}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{viewModel.mModel.article.source.name}"
+            android:textColor="@color/primaryText"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_news"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Times Of India" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4sp"
+            android:text="@{viewModel.mModel.article.title}"
+            android:textColor="@color/primaryText"
+            android:textSize="25sp"
+            app:layout_constraintTop_toBottomOf="@id/img_news"
+            tools:text="IPL 2021 Suspended Highlights: BCCI Hopeful of Hosting T20 WC; Atherton Thinks No Space For Completing Season - News18" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="2sp"
+            android:text="@{viewModel.mModel.article.description != null ? viewModel.mModel.article.description : viewModel.mModel.article.content}"
+            android:textColor="@color/secondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_news_title"
+            tools:text="IPL Suspended Covid-19 Crisis Highlights: It was a moving day of different sorts with several overseas cricketers either departing and reaching home while others anxiously waiting for further clarity… [+2030 chars]" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:onClick="@{() -> viewModel.onReadMoreClick()}"
+            android:text="Read More"
+            android:textColor="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -14,20 +14,21 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="250dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
         android:elevation="10dp"
         android:foregroundGravity="center"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        android:onClick="@{()-> itemModel.onNewsItemClicked()}">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@color/black" />
+            app:load_image="@{itemModel.imageUrl}"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
